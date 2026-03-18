@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Derek's Desktop</title>
+
+<style>
+/* --- Color Variables --- */
+:root{
+  --bg1:#89c6ff;
+  --bg2:#e7f2ff;
+  --text:#222;
+  --card:rgba(255,255,255,0.6);
+  --button:#4fa3ff;
+}
+body.dark{
+  --bg1:#0f2027;
+  --bg2:#203a43;
+  --text:#f0f0f0;
+  --card:rgba(30,30,30,0.7);
+  --button:#6aa8ff;
+}
+
+/* --- Body & Gradient --- */
+body{
+  margin:0;
+  font-family:"Trebuchet MS", sans-serif;
+  color:var(--text);
+  background:linear-gradient(-45deg,var(--bg1),var(--bg2),#b7d9ff,#ffffff);
+  background-size:400% 400%;
+  animation:gradient 15s ease infinite;
+  transition: color 0.15s, background-color 0.15s; /* fast toggle transition */
+}
+
+@keyframes gradient{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* --- Particles --- */
+.particle{
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  opacity:0.6;
+  animation:float 20s linear infinite;
+}
+
+@keyframes float{
+  0%{transform:translateY(100vh)}
+  100%{transform:translateY(-10vh)}
+}
+
+/* --- Theme Toggle Button --- */
+.themeToggle{
+  position:fixed;
+  top:20px;
+  right:20px;
+  padding:10px 16px;
+  z-index:100;
+  cursor:pointer;
+}
+
+/* --- Header --- */
+header{
+  text-align:center;
+  padding:100px 20px;
+}
+header h1{
+  font-size:52px;
+  margin-bottom:10px;
+}
+header p{
+  font-size:20px;
+}
+
+/* --- Sections --- */
+section{
+  max-width:1000px;
+  margin:auto;
+  padding:60px 20px;
+}
+
+/* --- Grid Layout --- */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+/* --- Glassmorphism Cards --- */
+.card{
+  background:var(--card);
+  backdrop-filter:blur(10px);
+  border-radius:14px;
+  padding:25px;
+  box-shadow:0 15px 30px rgba(0,0,0,0.15);
+  transition:0.15s;
+}
+.card:hover{
+  transform:translateY(-8px) scale(1.02);
+}
+
+/* --- Buttons --- */
+button{
+  background:var(--button);
+  border:none;
+  padding:12px 20px;
+  border-radius:8px;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.15s;
+}
+button:hover{
+  transform:scale(1.05);
+}
+
+/* --- Footer --- */
+footer{
+  text-align:center;
+  padding:40px;
+  font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Theme Toggle -->
+<button class="themeToggle" onclick="toggleTheme()">⏾ Dark Mode</button>
+
+<!-- Header -->
+<header>
+<h1>Hi there! I'm Derek</h1>
+<p>Student, Employed, and Developer</p>
+<button onclick="scrollToContact()">Contact Me</button>
+</header>
+
+<!-- Projects Section -->
+<section>
+<h2>Projects</h2>
+<div class="grid">
+  <div class="card">
+    <h3>🐸 Frog Game</h3>
+    <p>Idle frog desktop game I built using JavaScript.</p>
+  </div>
+  <div class="card">
+    <h3>🖱 Pixel Cursor</h3>
+    <p>A fun animated mouse cursor project.</p>
+  </div>
+  <div class="card">
+    <h3>🌐 Portfolio Website</h3>
+    <p>The website you are currently viewing.</p>
+  </div>
+</div>
+</section>
+
+<!-- Downloads Section -->
+<section>
+<h2>Downloads</h2>
+<div class="grid">
+  <div class="card">
+    <h3>🎨 Sticker Pack</h3>
+    <p>Free stickers for messaging apps.</p>
+    <button>Download</button>
+  </div>
+  <div class="card">
+    <h3>🖼 Wallpaper Pack</h3>
+    <p>Fantasy themed wallpapers.</p>
+    <button>Download</button>
+  </div>
+</div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact">
+<h2>Contact</h2>
+<p>Email me: <a href="mailto:103707@student.paragonisc.edu.kh">103707@student.paragonisc.edu.kh</a></p>
+</section>
+
+<!-- Footer -->
+<footer>
+© 2026 Derek Portfolio
+</footer>
+
+<script>
+// Smooth scroll to contact
+function scrollToContact(){
+  document.getElementById("contact").scrollIntoView({ behavior:"smooth" });
+}
+
+// Dark/Light mode toggle
+function toggleTheme(){
+  const body = document.body;
+  const btn = document.querySelector(".themeToggle");
+  body.classList.toggle("dark");
+  btn.textContent = body.classList.contains("dark") ? "★ Light Mode" : "⏾ Dark Mode";
+}
+
+// Floating particles
+for(let i=0;i<30;i++){
+  const p = document.createElement("div");
+  p.className="particle";
+  p.style.left = Math.random()*100 + "vw";
+  p.style.width = p.style.height = 4 + Math.random()*6 + "px";
+  p.style.opacity = 0.3 + Math.random()*0.5;
+  p.style.animationDuration = 10 + Math.random()*15 + "s";
+  document.body.appendChild(p);
+}
+</script>
+
+</body>
+</html>
